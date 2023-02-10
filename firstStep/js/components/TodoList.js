@@ -1,5 +1,5 @@
 export default {
-    template: `
+  template: `
     <section v-show="todos.length">
     <h1 class="font-bold text-lg mx-auto">{{ title }}</h1>
     <ul class="mx-auto">
@@ -13,8 +13,21 @@ export default {
     </ul>
     </section>
     `,
-    props: {
-        todos: Array,
-        title: String,
-    }
-}
+  props: {
+    todos: Array,
+    title: String,
+  },
+
+  data() {
+    return {
+      themes: ["Theme 1", "Theme 2", "Theme 3"],
+      currentTheme: "",
+    };
+  },
+
+  computed: {
+    filterByTheme(theme) {
+      return todos.filter((a) => a.theme === theme);
+    },
+  },
+};

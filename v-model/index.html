@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>V-MODEL</title>
+
+    <style>
+      html,
+      body {
+        padding: 0;
+        overflow-y: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="app"
+      class="h-screen w-screen flex flex-col items-center mt-20 space-y-10"
+    >
+      <form class="flex items-center">
+        <label for="simple-search" class="sr-only">Search</label>
+        <div class="relative w-full">
+          <div
+            class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+          >
+            <svg
+              aria-hidden="true"
+              class="w-5 h-5 text-gray-500 dark:text-gray-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+          </div>
+          <input
+            type="text"
+            id="simple-search"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
+            placeholder="Search"
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          class="p-2.5 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            ></path>
+          </svg>
+          <span class="sr-only">Search</span>
+        </button>
+      </form>
+
+      <ul class="grid grid-cols-4 grid-rows-3 gap-3">
+        <li
+          v-for="cocktail in cocktails"
+          class="max-w-sm rounded overflow-hidden shadow-lg"
+        >
+          <div class="font-bold text-xl mb-2 text-center">
+            {{ cocktail.strDrink }}
+            <span
+              class="inline-block rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2"
+              :class="colorTag[cocktail.strCategory] ? colorTag[cocktail.strCategory] : 'bg-gray-400' "
+              >{{ cocktail.strCategory }}
+            </span>
+          </div>
+          <img
+            class="w-full"
+            :src="cocktail.strDrinkThumb"
+            alt="Sunset in the mountains"
+          />
+          <div class="px-6 py-4">
+            <p class="text-gray-700 text-base"></p>
+          </div>
+          <div class="px-6 pt-4 pb-2">
+            <span
+              class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+              >{{ cocktail.strIngredient1 }}</span
+            >
+            <span
+              class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+              >{{ cocktail.strIngredient2 }}</span
+            >
+            <span
+              class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+              >{{ cocktail.strIngredient3 }}</span
+            >
+          </div>
+        </li>
+      </ul>
+
+      <script type="module">
+        let App = {
+          data() {
+            return {
+              cocktails: [],
+              name: "",
+              colorTag: {
+                Shot: "bg-red-600",
+                "Ordinary Drink": "bg-green-400",
+                Cocktail: "bg-yellow-400",
+              },
+            };
+          },
+          created() {
+            this.cocktails = fetch(
+              "https://www.thecocktaildb.com/api/json/v1/1/search.php?s="
+            )
+              .then((res) => res.json())
+              .then((data) => {
+                this.cocktails = data.drinks;
+              });
+          },
+
+          computed: {
+            filters(cat) {
+              return {
+                byCategory: cocktails.filter((a) => a.strCategory === cat),
+              };
+            },
+          },
+        };
+
+        Vue.createApp(App).mount("#app");
+      </script>
+    </div>
+  </body>
+</html>

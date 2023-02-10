@@ -1,9 +1,8 @@
 import Todos from "./Todos.js";
 
 export default {
-        components: { Todos },
-        template: 
-            `
+  component: { Todos },
+  template: `
             <todos></todos>
-        `
-}
+        `,
+};
