@@ -1,0 +1,67 @@
+{
+  "teams": [
+    {
+      "id": 1,
+      "name": "Smiley Team",
+      "spots": 5,
+      "members": [
+        {
+          "name": "Jonh Doe",
+          "email": "JonhDoe@gmail.com",
+          "country": "Argentina",
+          "status": "Online"
+        },
+        {
+          "name": "Luke syl",
+          "email": "JonhDoe2@gmail.com",
+          "country": "Argentina",
+          "status": "Online"
+        },
+        {
+          "name": "Spsdow",
+          "email": "JonhDoe3@gmail.com",
+          "country": "Argentina",
+          "status": "Online"
+        },
+        {
+          "name": "sayed sasssd",
+          "email": "JonhDoe5@gmail.com",
+          "country": "Argentina",
+          "status": "Online"
+        }
+      ]
+    },
+
+    {
+      "id": 2,
+      "name": "Second team",
+      "spots": 10,
+      "members": [
+        {
+          "name": "Jonh Doe",
+          "email": "JonhDoe@gmail.com",
+          "country": "Argentina",
+          "status": "Online"
+        },
+        {
+          "name": "Luke syl",
+          "email": "JonhDoe2@gmail.com",
+          "country": "Argentina",
+          "status": "Online"
+        },
+        {
+          "name": "Spsdow",
+          "email": "JonhDoe3@gmail.com",
+          "country": "Argentina",
+          "status": "Online"
+        },
+        {
+          "name": "sayed sasssd",
+          "email": "JonhDoe5@gmail.com",
+          "country": "Argentina",
+          "status": "Online"
+        }
+      ]
+    }
+  ]
+}
